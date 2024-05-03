@@ -1,11 +1,14 @@
 "use strict";
 const CACHE = "precache",
   broadcast = new BroadcastChannel("/api/drive.v1");
+let enableCache = !1;
 function onInstall(t) {
   self.skipWaiting(), t.waitUntil(cacheAll());
 }
-function onActivate(t) {
-  t.waitUntil(self.clients.claim());
+function onActivate(a) {
+  const e = new URL(location.href).searchParams;
+  (enableCache = "true" === e.get("enableCache")),
+    a.waitUntil(self.clients.claim());
 }
 async function onFetch(t) {
   const { request: a } = t,
@@ -58,12 +61,12 @@ function adaptedRequest(request) {
   let pathWithoutFilename = pathSegments.join('/');
 
   let newURL = undefined;
-  if (filename.startsWith('ipython-8.')) {
-    newURL = new URL(`${pathWithoutFilename}/static/pyodide/ipython-8.21.0-py3-none-any.whl.zip${params}`);
-  } else {
+  // if (filename.startsWith('ipython-8.')) {
+  //   newURL = new URL(`${pathWithoutFilename}/static/pyodide/ipython-8.21.0-py3-none-any.whl.zip${params}`);
+  // } else {
     // Construct the new URL
     newURL = new URL(`${pathWithoutFilename}/static/pyodide/${filename}.zip${params}`);
-  }
+  // }
 
   return new Request(newURL, { method: request.method, headers: request.headers, body: request.body, mode: request.mode });
 }
@@ -80,6 +83,7 @@ async function maybeFromCache(t) {
   }
   return n;
 }
+
 async function fromCache(t) {
   const a = await openCache(),
     n = await a.match(t);
@@ -90,7 +94,7 @@ async function refetch(t) {
   const a = await fetch(nt);
   return await updateCache(t, a), a;
 }
-function shouldBroadcast(t) {
+function shouldBroadcast(t\) {
   return t.origin === location.origin && t.pathname.includes("/api/drive");
 }
 function shouldDrop(t, a) {
