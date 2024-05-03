@@ -65,7 +65,7 @@ function adaptedRequest(request) {
   //   newURL = new URL(`${pathWithoutFilename}/static/pyodide/ipython-8.21.0-py3-none-any.whl.zip${params}`);
   // } else {
     // Construct the new URL
-    newURL = new URL(`${pathWithoutFilename}/static/pyodide/${filename}.zip${params}`);
+    newURL = new URL(`${pathWithoutFilename}/pyodide/${filename}.zip${params}`);
   // }
 
   return new Request(newURL, { method: request.method, headers: request.headers, body: request.body, mode: request.mode });
