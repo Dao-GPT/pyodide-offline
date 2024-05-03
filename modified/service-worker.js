@@ -94,7 +94,7 @@ async function refetch(t) {
   const a = await fetch(nt);
   return await updateCache(t, a), a;
 }
-function shouldBroadcast(t\) {
+function shouldBroadcast(t) {
   return t.origin === location.origin && t.pathname.includes("/api/drive");
 }
 function shouldDrop(t, a) {
