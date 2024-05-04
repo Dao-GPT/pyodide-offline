@@ -3,7 +3,7 @@ channels:
 - conda-forge
 dependencies:
 - build
-- python=3.10
+- python==3.11
 - mamba
 - pydata-sphinx-theme
 - myst-parser
