@@ -26,13 +26,16 @@ jobs:
           # cp README.md content
           touch content/built-in-wheels.txt
           
-          mkdir ./dist
-          mkdir ./dist/static
-          mkdir ./dist/static/pyodide
-          cp ./wheels/* ./dist/static/pyodide
+          # mkdir ./dist
+          # mkdir ./dist/static
+          # mkdir ./dist/static/pyodide
+          # cp ./wheels/* ./dist/static/pyodide
+          
           # cp ./.cache/pyodide/pyodide/pyodide/*.whl ./dist/static/pyodide
           
           jupyter lite build --contents content --output-dir dist --pyodide https://github.com/pyodide/pyodide/releases/download/0.25.0/pyodide-0.25.0.tar.bz2
+          cp ./wheels/* ./dist/static/pyodide
+
           ## cp ./modified/all.json ./dist/extensions/@jupyterlite/pyodide-kernel-extension/static/pypi/all.json
           for file in ./dist/static/pyodide/*.whl; do basename "$file"; done | tr -cd '\11\12\15\40-\176' > ./dist/files/built-in-wheels.txt
           # find ./dist -type f -name "*.whl" -exec sh -c 'mv "$1" "./dist/static/pyodide/${1%.whl}.whl.zip"' _ {} \;
