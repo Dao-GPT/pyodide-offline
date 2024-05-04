@@ -29,7 +29,7 @@ jobs:
           mkdir ./dist
           mkdir ./dist/static
           mkdir ./dist/static/pyodide
-          cp ./wheels/*.whl ./dist/static/pyodide
+          cp ./wheels/* ./dist/static/pyodide
           # cp ./.cache/pyodide/pyodide/pyodide/*.whl ./dist/static/pyodide
           
           jupyter lite build --contents content --output-dir dist --pyodide https://github.com/pyodide/pyodide/releases/download/0.25.0/pyodide-0.25.0.tar.bz2
