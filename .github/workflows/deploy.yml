@@ -25,6 +25,9 @@ jobs:
         run: |
           # cp README.md content
           touch content/built-in-wheels.txt
+          
+          mkdir ./dist
+          mkdir ./dist/static
           mkdir ./dist/static/pyodide
           cp ./wheels/*.whl ./dist/static/pyodide
           cp ./.cache/pyodide/pyodide/pyodide/*.whl ./dist/static/pyodide
