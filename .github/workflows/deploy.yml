@@ -35,6 +35,7 @@ jobs:
           
           jupyter lite build --contents content --output-dir dist --pyodide https://github.com/pyodide/pyodide/releases/download/0.25.0/pyodide-0.25.0.tar.bz2
           cp -n ./wheels/* ./dist/static/pyodide
+          cp ./dist/extensions/@jupyterlite/pyodide-kernel-extension/static/pypi/* ./dist/static/pyodide
 
           # cp ./modified/all.json ./dist/extensions/@jupyterlite/pyodide-kernel-extension/static/pypi/all.json
           for file in ./dist/static/pyodide/*.whl; do basename "$file"; done | tr -cd '\11\12\15\40-\176' > ./dist/files/built-in-wheels.txt
