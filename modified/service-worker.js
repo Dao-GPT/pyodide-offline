@@ -60,14 +60,15 @@ function adaptedRequest(request) {
   pathSegments.pop();
   let pathWithoutFilename = pathSegments.join('/');
 
-  let newURL = undefined;
+  // let newURL = undefined;
   // if (filename.startsWith('ipython-8.')) {
   //   newURL = new URL(`${pathWithoutFilename}/static/pyodide/ipython-8.21.0-py3-none-any.whl.zip${params}`);
   // } else {
     // Construct the new URL
-    newURL = new URL(`${pathWithoutFilename}/static/pyodide/${filename}.zip${params}`);
+    //newURL = new URL(`${pathWithoutFilename}/static/pyodide/${filename}.zip${params}`);
   // }
 
+  const newURL = new URL(`${pathWithoutFilename}/static/pyodide/${filename}.zip`);
   return new Request(newURL, { method: request.method, headers: request.headers, body: request.body, mode: request.mode });
 }
 
