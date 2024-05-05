@@ -40,7 +40,7 @@ jobs:
           for file in ./dist/static/pyodide/*.whl; do basename "$file"; done | tr -cd '\11\12\15\40-\176' > ./dist/files/built-in-wheels.txt
           # find ./dist -type f -name "*.whl" -exec sh -c 'mv "$1" "./dist/static/pyodide/${1%.whl}.whl.zip"' _ {} \;
           # find ./dist -type f -name "*.whl" -print0 | xargs -0 -I{} sh -c 'mv "{}" "./dist/static/pyodide/$(basename "{}" .whl).whl.zip"'
-          for f in ./wheels/*.whl; do mv -n "$f" "${f}.zip"; done
+          for f in ./dist/static/pyodide/*.whl; do mv -n "$f" "${f}.zip"; done
 
           cp ./modified/service-worker.js ./dist
           grep -rl --exclude='*.whl.zip' '.whl' ./dist
