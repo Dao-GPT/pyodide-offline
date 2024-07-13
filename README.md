@@ -1,5 +1,7 @@
 DaoGPT
 
+Please visit the official repo, https://github.com/MRYingLEE/pyodide-offline .
+
 # JupyterLite Demo
 
 [![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://jupyterlite.github.io/demo)
